@@ -13,13 +13,14 @@
         <div class="col-sm-12">
           <div class="form-group">
             <label for="imagePath">Image URL</label>
-            <input type="text" id="imagePath" class="form-control" formControlName="imgPath">
+            <input type="text" id="imagePath" class="form-control" formControlName="imgPath" #imagePath>
           </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-12">
-          <img src="" class="img-responsive">
+        <div class="col-sm-12" *ngIf="imagePath.value != ''">
+          <h4>Image Preview</h4>
+          <img [src]="imagePath.value" class="img-responsive">
         </div>
       </div>
       <div class="row">
@@ -31,28 +32,29 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12" formArrayName="ingredients">
           <label for="Ingre">Ingredient</label>
-          <div class="row" id="Ingre">
-
+          <div class="row" style="margin-top:10px" id="Ingre" *ngFor="let ingredientCtrl of recipeForm.get('ingredients').controls; let i=index"
+            [formGroupName]="i">
             <div class="col-sm-8">
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" formControlName="name">
             </div>
             <div class="col-sm-2">
-              <input type="number" class="form-control">
+              <input type="number" class="form-control" formControlName="amount">
             </div>
             <div class="col-sm-2">
-              <button class="btn btn-danger">Drop</button>
+              <button type="button" class="btn btn-danger" (click)="onDrop(i)">Drop</button>
             </div>
-
           </div>
         </div>
       </div>
-      <br>
-      <div class="row">
-        <div class="col-sm-12">
-          <button class="btn btn-primary" type="submit">Save</button>
+      <div class="row" style="margin-top:10px; margin-bottom: 20px">
+        <div class="col-sm-6 pull-left">
+          <button class="btn btn-primary" type="submit" [disabled]="!recipeForm.valid">Save</button>
           <button class="btn btn-danger" type="button" (click)="onCancel()">Cancel</button>
+        </div>
+        <div class="col-sm-6 pull-right">
+          <button type="button" class="btn btn-success pull-right" (click)="onAddNewIngredient()">Add Ingredient</button>
         </div>
       </div>
 
