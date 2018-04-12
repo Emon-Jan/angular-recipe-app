@@ -32,7 +32,7 @@ export class ShoppinglistServices {
 
     deleteIngredient(i: number) {
         this.ingredients.splice(i, 1);
-        this.ingredientChanged.next(this.ingredients.slice())
+        this.ingredientChanged.next(this.ingredients.slice());
     }
 
     addToIngredients(ingredients: Ingredients[]) {
