@@ -38,6 +38,11 @@ export class RecipeService {
         return this.recipes.slice();
     }
 
+    setRecipes(rec: Recipe[]) {
+        this.recipes = rec;
+        this.recipeChanged.next(this.recipes.slice());
+    }
+
     getRecipe(id: number) {
         return this.recipes[id];
     }
