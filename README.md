@@ -1,3 +1,9 @@
+#TODO
+
+1. get token
+2. sending token while save or get data
+3. optimize the app
+
 # RecipeApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.7.
