@@ -21,21 +21,16 @@ import { DataStoreService } from './Shared/data-store.service';
 import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { AuthService } from './auth/auth.service';
+import { RecipesModule } from './recipes/recipes.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    RecipesComponent,
-    RecipeListComponent,
-    RecipeItemComponent,
-    RecipeDetailComponent,
     ShoppingListComponent,
     ShoppingEditComponent,
     DropdownDirective,
-    RecipeStartComponent,
-    RecipeEditComponent,
     SignupComponent,
     SigninComponent
   ],
@@ -44,7 +39,7 @@ import { AuthService } from './auth/auth.service';
     FormsModule,
     HttpModule,
     AppRouteModule,
-    ReactiveFormsModule
+    RecipesModule
   ],
   providers: [ShoppinglistServices, RecipeService, DataStoreService, AuthService],
   bootstrap: [AppComponent]
