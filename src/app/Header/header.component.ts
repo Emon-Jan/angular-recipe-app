@@ -12,7 +12,7 @@ export class HeaderComponent {
 
   constructor(
     private dataStore: DataStoreService,
-    private authService: AuthService
+    public authService: AuthService
   ) {}
 
   onSelect(feature: String) {
