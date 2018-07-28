@@ -81,7 +81,8 @@ export class RecipeEditComponent implements OnInit {
   }
 
   onAddNewIngredient() {
-    (<FormArray>this.recipeForm.get("ingredients")).push(
+    let ingredientsForm = this.recipeForm.get("ingredients") as FormArray;
+    ingredientsForm.push(
       new FormGroup({
         name: new FormControl(null, Validators.required),
         amount: new FormControl(null, [
