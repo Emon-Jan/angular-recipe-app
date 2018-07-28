@@ -1,31 +1,40 @@
-import { DataStoreService } from './../Shared/data-store.service';
-import { Component, EventEmitter, Output } from '@angular/core';
-import { Response } from '@angular/http';
+import { AuthService } from "./../auth/auth.service";
+import { DataStoreService } from "./../Shared/data-store.service";
+import { Component, EventEmitter, Output } from "@angular/core";
+import { Response } from "@angular/http";
 
 @Component({
-    selector: 'app-header',
-    templateUrl: './header.component.html'
+  selector: "app-header",
+  templateUrl: "./header.component.html"
 })
 export class HeaderComponent {
-    @Output() featureSelected = new EventEmitter<String>();
+  @Output() featureSelected = new EventEmitter<String>();
 
-    constructor(private dataStore: DataStoreService) { }
+  constructor(
+    private dataStore: DataStoreService,
+    private authService: AuthService
+  ) {}
 
-    onSelect(feature: String) {
-        this.featureSelected.emit(feature);
-    }
+  onSelect(feature: String) {
+    this.featureSelected.emit(feature);
+  }
 
-    onSave() {
-        this.dataStore.storeRecipeData()
-            .subscribe(
-                (response: Response) => { console.log(response); },
-                (error) => {
-                    console.log('Error in getting data ' + error);
-                }
-            );
-    }
+  onSave() {
+    this.dataStore.storeRecipeData().subscribe(
+      (response: Response) => {
+        console.log(response);
+      },
+      error => {
+        console.log("Error in getting data " + error);
+      }
+    );
+  }
 
-    onGet() {
-        this.dataStore.getRecipeData();
-    }
+  onGet() {
+    this.dataStore.getRecipeData();
+  }
+
+  onLogout() {
+    this.authService.logOut();
+  }
 }
